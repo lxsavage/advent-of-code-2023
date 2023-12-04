@@ -44,11 +44,6 @@ def find_last_digit(line: str) -> str:
     return ''
 
 
-def load_data(path: str) -> list[str]:
-    with open(path, "r") as f:
-        return [line.strip() for line in f.readlines()]
-
-
 def get_calibration(line: str) -> int:
     left_number: str = find_first_digit(line)
     right_number: str = find_last_digit(line)
@@ -60,7 +55,8 @@ if __name__ == '__main__':
         print(f'Usage: python {sys.argv[0]} <input_file>')
         sys.exit(1)
 
-    data = load_data(sys.argv[1])
+    with open(sys.argv[1], "r") as f:
+        data = [line.strip() for line in f.readlines()]
 
     total_calibration = 0
     for i, line in enumerate(data):
