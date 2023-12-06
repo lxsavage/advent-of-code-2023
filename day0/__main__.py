@@ -1,5 +1,18 @@
-# Problem: https://adventofcode.com/2023/day/2
+# Problem: https://adventofcode.com/2023/day/0
 import sys
+import time
+
+
+def parse_input(input: list[str]) -> any:
+    pass
+
+
+def part1(input: any):
+    pass
+
+
+def part2(input: any):
+    pass
 
 
 if __name__ == '__main__':
@@ -8,7 +21,12 @@ if __name__ == '__main__':
         sys.exit(1)
 
     with open(sys.argv[1], "r") as f:
-        data = [line.strip() for line in f.readlines()]
+        input = parse_input([line.strip() for line in f.readlines()])
 
-    # Start here
-    pass
+    start_time = time.time()
+    if len(sys.argv) > 2 and sys.argv[2] == '2':
+        part2(input)
+    else:
+        part1(input)
+
+    print(f'--- Completed in {(time.time() - start_time) / 60.} minutes ---'

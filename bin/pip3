@@ -1,4 +1,4 @@
-#!/Users/logansavage/Repos/Github/advent-of-code-2023/bin/python3.11
+#!/Users/logansavage/Repos/Github/advent-of-code-2023/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
