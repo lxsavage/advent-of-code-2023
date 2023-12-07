@@ -2,12 +2,24 @@
 
 This repo contains my current work for Advent of code for 2023.
 
-[X][X] Day 1
-[X][X] Day 2
-[X][ ] Day 3
-[X][ ] Day 4
-[X][X] Day 5
-[X][X] Day 6
+- Day 1
+  - [X] Part 1
+  - [X] Part 2
+- Day 2
+  - [X] Part 1
+  - [X] Part 2
+- Day 3
+  - [X] Part 1
+  - [ ] Part 2
+- Day 4
+  - [X] Part 1
+  - [ ] Part 2
+- Day 5
+  - [X] Part 1
+  - [X] Part 2
+- Day 6
+  - [X] Part 1
+  - [X] Part 2
 
 ## Additional notes
 
