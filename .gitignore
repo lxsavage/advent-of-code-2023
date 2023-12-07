@@ -170,3 +170,4 @@ cython_debug/
 #   but not globally, use the following command instead:
 #   git config --local core.excludesfile ~/.gitignore_global
 .DS_Store
+input1.txt

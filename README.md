@@ -20,6 +20,9 @@ This repo contains my current work for Advent of code for 2023.
 - Day 6
   - [X] Part 1
   - [X] Part 2
+- Day 7
+  - [X] Part 1
+  - [X] Part 2
 
 ## Additional notes
 
