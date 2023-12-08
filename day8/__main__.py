@@ -1,4 +1,4 @@
-# Problem: https://adventofcode.com/2023/day/0
+# Problem: https://adventofcode.com/2023/day/8
 import sys
 import time
 
