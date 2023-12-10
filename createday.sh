@@ -18,4 +18,5 @@ fi
 # Create day folder, using day0/ as template
 cp -r day0 day$1
 
-echo "Created new folder: day$1/"
+# echo "Created new folder: day$1/"
+$EDITOR .
