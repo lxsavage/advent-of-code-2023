@@ -23,15 +23,21 @@ This repo contains my current work for Advent of code for 2023.
 - Day 7
   - [X] Part 1
   - [X] Part 2
+- Day 8
+  - [X] Part 1
+  - [ ] Part 2
+- Day 9
+  - [X] Part 1
+  - [X] Part 2
 
 ## Additional notes
 
-For running this, I set up a Python 3.12 venv, with the assumption
-that the project would be run in Neovim. To run a single day's code
-after activating the venv, use:
+For running this, I set up a Python 3.12 venv. To run a single day's code after
+activating the venv, use:
 
 ```sh
-source bin/activate # Activation, only needs to be done once per shell environment
+# Activation, only needs to be done once per shell environment
+source bin/activate
 ```
 
 To run:

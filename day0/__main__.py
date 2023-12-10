@@ -26,7 +26,7 @@ if __name__ == '__main__':
         input = parse_input([line.strip() for line in f.readlines()])
 
     start_time = time.time()
-    if len(sys.argv) > 2 and sys.argv[2] == '2':
+    if len(sys.argv) > 2 and '2' in sys.argv:
         part2(input)
     else:
         part1(input)
