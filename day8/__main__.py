@@ -2,17 +2,51 @@
 import sys
 import time
 
-
-def parse_input(input: list[str]) -> any:
-    pass
+VERBOSE = True
 
 
-def part1(input: any):
-    pass
+def vprint(*args, **kwargs):
+    if VERBOSE:
+        print(*args, **kwargs)
 
 
-def part2(input: any):
-    pass
+def parse_input(input: list[str]) -> (str, dict[str, list[str]]):
+    instructions = input[0]
+    nodes = {}
+
+    for line in input[2:]:
+        split_node_children = line.split(' = ')
+        node = split_node_children[0]
+        children = split_node_children[1] \
+            .replace('(', '') \
+            .replace(')', '') \
+            .split(', ')
+
+        nodes[node] = children
+
+    return (instructions, nodes)
+
+
+def part1(input: (str, dict[str, list[str]])):
+    instructions, nodes = input
+    current_node = 'AAA'
+    instruction_ptr = 0
+    step_count = 0
+    vprint('Instructions:', instructions)
+    while current_node != 'ZZZ':
+        instruction = instructions[instruction_ptr]
+        previous_node = current_node
+        current_node = nodes[current_node][1 if instruction == 'R' else 0]
+        instruction_ptr = (instruction_ptr + 1) % len(instructions)
+        step_count += 1
+        vprint(f'{previous_node} -> {current_node}\tStep: {step_count}')
+    print(step_count, 'steps')
+
+
+def part2(input: (str, dict[str, list[str]])):
+    starting_nodes = [node for node in input[1].keys() if node.endswith('A')]
+    print(input[1])
+    print(starting_nodes)
 
 
 if __name__ == '__main__':
