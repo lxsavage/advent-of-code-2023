@@ -1,13 +1,9 @@
 # Problem: https://adventofcode.com/2023/day/8
 import sys
 import time
+import functools
 
-VERBOSE = True
-
-
-def vprint(*args, **kwargs):
-    if VERBOSE:
-        print(*args, **kwargs)
+vprint = print if '-v' in sys.argv else lambda *a, **k: None
 
 
 def parse_input(input: list[str]) -> (str, dict[str, list[str]]):
@@ -43,10 +39,43 @@ def part1(input: (str, dict[str, list[str]])):
     print(step_count, 'steps')
 
 
+def lcm(*args):
+    def gcd(a, b):
+        while b:
+            a, b = b, a % b
+        return a
+
+    def lcm(a, b):
+        return a * b // gcd(a, b)
+
+    return functools.reduce(lcm, args)
+
+
+def find_period(
+        node: str,
+        instructions: str,
+        nodes: dict[str, list[str]]) -> int:
+    step_count = 0
+    instruction_ptr = 0
+    current_node = node
+    while not current_node.endswith('Z'):
+        vprint('\t', current_node)
+        instruction = instructions[instruction_ptr]
+        current_node = nodes[current_node][1 if instruction == 'R' else 0]
+        step_count += 1
+        instruction_ptr = (instruction_ptr + 1) % len(instructions)
+
+    return step_count
+
+
 def part2(input: (str, dict[str, list[str]])):
+    instructions, nodes = input
     starting_nodes = [node for node in input[1].keys() if node.endswith('A')]
-    print(input[1])
-    print(starting_nodes)
+    vprint('Starting nodes:', starting_nodes)
+    node_periods = [find_period(node, instructions, nodes)
+                    for node in starting_nodes]
+    vprint('Node periods:', node_periods)
+    print(lcm(*node_periods), 'steps')
 
 
 if __name__ == '__main__':
