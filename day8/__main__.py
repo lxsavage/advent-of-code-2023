@@ -2,6 +2,7 @@
 import sys
 import time
 import functools
+import math
 
 vprint = print if '-v' in sys.argv else lambda *a, **k: None
 
@@ -39,22 +40,8 @@ def part1(input: (str, dict[str, list[str]])):
     print(step_count, 'steps')
 
 
-def lcm(*args):
-    def gcd(a, b):
-        while b:
-            a, b = b, a % b
-        return a
-
-    def lcm(a, b):
-        return a * b // gcd(a, b)
-
-    return functools.reduce(lcm, args)
-
-
-def find_period(
-        node: str,
-        instructions: str,
-        nodes: dict[str, list[str]]) -> int:
+def find_period(node: str, instructions: str,
+                nodes: dict[str, list[str]]) -> int:
     step_count = 0
     instruction_ptr = 0
     current_node = node
@@ -75,7 +62,7 @@ def part2(input: (str, dict[str, list[str]])):
     node_periods = [find_period(node, instructions, nodes)
                     for node in starting_nodes]
     vprint('Node periods:', node_periods)
-    print(lcm(*node_periods), 'steps')
+    print(math.lcm(*node_periods), 'steps')
 
 
 if __name__ == '__main__':
