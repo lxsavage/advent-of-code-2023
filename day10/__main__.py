@@ -1,6 +1,7 @@
 # Problem: https://adventofcode.com/2023/day/10
 import sys
 import time
+import re
 
 vprint = print if '-v' in sys.argv else lambda *a, **k: None
 
@@ -15,7 +16,8 @@ PATHS = {
     'J': (True, False, True, False),
     '7': (False, True, True, False),
     'F': (False, True, False, True),
-    '.': (False, False, False, False)
+    '.': (False, False, False, False),
+    'S': (True, True, True, True),
 }
 
 
@@ -85,19 +87,52 @@ def part1(input: tuple[int, int, list[str]]):
     print('Furthest distance:', furthest_distance)
 
 
+def is_vertical_path(r: int, c: int, grid: list[str]) -> bool:
+    """
+    Returns True if the path at (r, c) is vertical, False otherwise
+    """
+    symbol = grid[r][c]
+    return PATHS[symbol][0] or PATHS[symbol][1]
+
+
+def find_loop_nodes(start_r: int, start_c: int, grid: list[str]) \
+        -> list[tuple[int, int]]:
+    def dfs(r: int, c: int, path: list[tuple[int, int]]) \
+            -> list[tuple[int, int]]:
+        pass
+
+    path = []
+    # TODO: Perform a DFS to find the node path that loops back to the start
+    return path
+
+
 def part2(input: tuple[int, int, list[str]]):
     row, col, grid = input
+    debug_regex = re.compile(r'\.')
     for line in grid:
-        vprint(line)
+        vprint(line, len(debug_regex.sub('', line)))
     vprint()
     vprint(f'Starting from ({row}, {col})')
     print('Processing...')
+
     # 1. Find the maximum distance path that loops back to the starting
     #    position
+    loop_nodes = find_loop_nodes(row, col, row, col, grid)
+    print(f'Loop nodes ({len(loop_nodes)}):', loop_nodes)
 
-    # 2. Iterate line-by-line to calculate the area of the grid contained
-    #    within the loop
+    # Calculate the area of the loop (using raycasting)
     area = 0
+    is_inside_loop = False
+    for r, line in enumerate(input):
+        for c, symbol in enumerate(line):
+            if symbol == '.' and is_inside_loop:
+                area += 1
+            elif (r, c) in loop_nodes and is_vertical_path(row, col, grid):
+                if is_inside_loop and not PATHS[symbol][3]:
+                    is_inside_loop = False
+                elif not is_inside_loop and PATHS[symbol][2]:
+                    is_inside_loop = True
+
     print('Area:', area)
 
 
