@@ -35,6 +35,12 @@ This repo contains my current work for Advent of code for 2023.
 - Day 11
   - [X] Part 1
   - [X] Part 2
+- Day 12
+  - [ ] Part 1
+  - [ ] Part 2
+- Day 13
+  - [X] Part 1
+  - [ ] Part 2
 
 ## Additional notes
 
